@@ -47,7 +47,7 @@ body {
 .keys-row {
     display: flex;
     justify-content: space-evenly;
-    height: 25%
+    flex-grow: 1;
 }
 
 .btn {
