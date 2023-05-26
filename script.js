@@ -1,18 +1,31 @@
 let sum = 0;
 let operator = null;
 
-function add(...args) {
-    return args[0] + args[1];
+function add(nextNum) {
+    return sum + nextNum;
 }
 
-function subtract(...args) {
-    return args[0] - args[1];
+function subtract(nextNum) {
+    return sum - nextNum;
 }
 
-function multiply(...args) {
-    return args[0] * args[1];
+function multiply(nextNum) {
+    return sum * nextNum;
 }
 
-function divide(...args) {
-    return args[0] / args[1];
+function divide(nextNum) {
+    return sum / nextNum;
+}
+
+function operate(nextNum, operator) {
+    switch(operator) {
+        case 'add':
+            sum = add(nextNum);
+        case 'subtract':
+            sum = subtract(nextNum);
+        case 'multiply':
+            sum = multiply(nextNum);
+        case 'divide':
+            sum = divide(nextNum);
+    }
 }
