@@ -79,7 +79,7 @@ function updateWindowText(windowText) {
 
 
 function calculateSum() {
-
+    console.log('sum');
 }
 
 function add(nextNum) {
