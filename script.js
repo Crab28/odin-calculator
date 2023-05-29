@@ -65,6 +65,15 @@ function updateWindowText(windowText) {
         firstNum += windowText;
         CALCULATOR_WINDOW.textContent = firstNum;
     }
+    else {
+        if (secondNum === null || secondNum === '0') {
+            secondNum = '';
+        }
+
+        secondNum += windowText;
+        CALCULATOR_WINDOW.textContent = secondNum;
+    }
+
 }
 
 
