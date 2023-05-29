@@ -34,20 +34,24 @@ function createCalculatorKeys() {
 
 function addButtonListener(button) {
     const OPERATORS = ['+', '-', 'x', '/'];
-    const windowText = button.textContent;
+    const buttonText = button.textContent;
 
     button.addEventListener('click', () => {
-        if (OPERATORS.includes(windowText)) {
+        if (OPERATORS.includes(buttonText)) {
+            operator = buttonText;
+
+            if (secondNum !== null) {
+                calculateSum();
+            }
+        }
+        else if (buttonText === '=') {
             return;
         }
-        else if (windowText === '=') {
-            return;
-        }
-        else if (windowText === '.') {
+        else if (buttonText === '.') {
             return;
         }
         else {
-            updateWindowText(windowText);
+            updateWindowText(buttonText);
         }
     })
 }
@@ -63,29 +67,10 @@ function updateWindowText(windowText) {
     }
 }
 
+
+
 function calculateSum() {
-    const CURRENT_NUM = CALCULATOR_WINDOW.textContent;
 
-    switch (operator) {
-        case '+':
-            sum = add(CURRENT_NUM);
-            CALCULATOR_WINDOW.textContent = sum;
-            break;
-        case '-':
-            sum = subtract(CURRENT_NUM);
-            CALCULATOR_WINDOW.textContent = sum;
-            break;
-        case 'x':
-            sum = multiply(CURRENT_NUM);
-            CALCULATOR_WINDOW.textContent = sum;
-            break;
-        case '-':
-            sum = divide(CURRENT_NUM);
-            CALCULATOR_WINDOW.textContent = sum;
-            break;
-    }
-
-    secondNum = true;
 }
 
 function add(nextNum) {
