@@ -56,6 +56,11 @@ function addButtonListener(button) {
 }
 
 function updateWindowText(windowText) {
+    if (firstNum === 'BLACK HOLE') {
+        firstNum = '0';
+        operator = null;
+    }
+
     if (operator === null) {
         if (firstNum === '0' && !windowText.includes('.')) {
             firstNum = '';
@@ -120,19 +125,22 @@ function calculateSum() {
 }
 
 function add() {
-    return Number(firstNum) + Number(secondNum)
+    return Number(firstNum) + Number(secondNum);
 }
 
 function subtract() {
-    return Number(firstNum) - Number(secondNum)
+    return Number(firstNum) - Number(secondNum);
 }
 
 function multiply() {
-    return Number(firstNum) * Number(secondNum)
+    return Number(firstNum) * Number(secondNum);
 }
 
 function divide() {
-    return Number(firstNum) / Number(secondNum)
+    if (secondNum === '0') {
+        return 'BLACK HOLE';
+    }
+    return Number(firstNum) / Number(secondNum);
 }
 
 function operate(nextNum, operator) {
