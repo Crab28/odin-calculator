@@ -46,7 +46,9 @@ function addButtonListener(button) {
             firstNum = CALCULATOR_WINDOW.textContent;
         }
         else if (buttonText === '=') {
-            return;
+            if (secondNum !== null) {
+                calculateSum();
+            }
         }
         else if (buttonText === '.') {
             return;
