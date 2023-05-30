@@ -3,7 +3,6 @@ const CALCULATOR_WINDOW = document.getElementById('calculator-window');
 let firstNum = '0';
 let secondNum = null;
 let operator = null;
-let decimalUsed = false;
 
 function createCalculatorKeys() {
     const CALC_KEYS = document.getElementById('calculator-keys');
@@ -50,9 +49,6 @@ function addButtonListener(button) {
                 calculateSum();
             }
         }
-        else if (buttonText === '.') {
-            return;
-        }
         else {
             updateWindowText(buttonText);
         }
@@ -61,21 +57,41 @@ function addButtonListener(button) {
 
 function updateWindowText(windowText) {
     if (operator === null) {
-        if (firstNum === '0') {
+        if (firstNum === '0' && !windowText.includes('.')) {
             firstNum = '';
         }
 
-        firstNum += windowText;
-        CALCULATOR_WINDOW.textContent = firstNum;
+        if (windowText.includes('.')) {
+            if (!firstNum.includes('.')) {
+                firstNum += windowText;
+            }
+        } else {
+            firstNum += windowText;
+        }
+        CALCULATOR_WINDOW.textContent = setFixedDecimal(firstNum);
     }
     else {
         if (secondNum === null || secondNum === '0') {
-            secondNum = '';
+            if (windowText.includes('.')) {
+                secondNum = '0';
+            } else {
+                secondNum = '';
+            }
         }
 
-        secondNum += windowText;
-        CALCULATOR_WINDOW.textContent = secondNum;
+        if (windowText.includes('.')) {
+            if (!secondNum.includes('.')) {
+                secondNum += windowText;
+            }
+        } else {
+            secondNum += windowText;
+        }
+        CALCULATOR_WINDOW.textContent = setFixedDecimal(secondNum);
     }
+}
+
+function setFixedDecimal(windowText) {
+    return windowText.slice(0, 9);
 }
 
 function calculateSum() {
