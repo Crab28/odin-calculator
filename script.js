@@ -38,11 +38,12 @@ function addButtonListener(button) {
 
     button.addEventListener('click', () => {
         if (OPERATORS.includes(buttonText)) {
-            operator = buttonText;
-
             if (secondNum !== null) {
                 calculateSum();
             }
+            
+            operator = buttonText;
+            firstNum = CALCULATOR_WINDOW.textContent;
         }
         else if (buttonText === '=') {
             return;
@@ -73,29 +74,47 @@ function updateWindowText(windowText) {
         secondNum += windowText;
         CALCULATOR_WINDOW.textContent = secondNum;
     }
-
 }
-
-
 
 function calculateSum() {
-    console.log('sum');
+    let newSum;
+
+    switch (operator) {
+        case '+':
+            newSum = add();
+            break;
+        case '-':
+            newSum = subtract();
+            break;
+        case 'x':
+            newSum = multiply();
+            break;
+        case '/':
+            newSum = divide();
+            break;
+    }
+
+    firstNum = '0';
+    secondNum = null;
+    operator = null;
+
+    CALCULATOR_WINDOW.textContent = newSum;
 }
 
-function add(nextNum) {
-    return  Number(nextNum);
+function add() {
+    return Number(firstNum) + Number(secondNum)
 }
 
-function subtract(nextNum) {
-    return sum - Number(nextNum);
+function subtract() {
+    return Number(firstNum) - Number(secondNum)
 }
 
-function multiply(nextNum) {
-    return sum * Number(nextNum);
+function multiply() {
+    return Number(firstNum) * Number(secondNum)
 }
 
-function divide(nextNum) {
-    return sum / Number(nextNum);
+function divide() {
+    return Number(firstNum) / Number(secondNum)
 }
 
 function operate(nextNum, operator) {
